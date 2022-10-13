@@ -1,16 +1,15 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 import re
 import string
 import requests
-from sklearn.feature_extraction.text import TfidfVectorizer
 
 @st.cache
 def get_data():
-    return pd.read_csv("data.csv" ,sep='\t')
+    return pd.read_csv("databpjh.csv" ,sep='\t')
 
 def split_query(q):
 	qlist=q.lower().split()
@@ -61,16 +60,9 @@ if(st.button('Submit')):
 		cariflag=True
 	else:
 		st.error("Masukkan input ya")
-
-st.title("Fun Facts about Produk Halal di Indonesia")
-
-
-st.header("WordCloud Nama Produk tersertifikasi Halal di LPPOM MUI")
-st.image("produk.png", width=None)
-
-st.header("Nama Perusahaan tersertifikasi Halal di LPPOM MUI")
-values = st.slider("Jumlah Perusahaan", 5, 20, step=5)
-st.table(datahalal.groupby(["perusahaan"]).count().sort_values("produk",ascending=False).head(values))
+		
+		
+st.markdown("Kode aplikasi bisa diunduh [disini] (https://github.com/nurainir/tanyahalal)")
 
 st.header("UMKM Binaan Pusat Kajian Halal ITS")
 st.markdown("Kunjungi binaan halal ITS [disini](http://halal.its.ac.id/binaan) ")
@@ -80,6 +72,7 @@ st.markdown("Kunjungi Linked Open Data Halal ITS [disini](http://halal.addi.is.i
 
 st.markdown("---")
 st.markdown("**Awards**")
+st.markdown("- [Juara 1 Inovasi Surabaya 2022](https://inovasi.surabaya.go.id/)")
 st.markdown("- [Best Graphistry app at Tigergraph Hackathon 2021](https://devpost.com/software/halal-food)")
 st.markdown("- [Neo4J Graphie Award Winner 2020](https://neo4j.com/graphies/#panel1)")
 st.markdown("- Best Paper at International Conference on Halal Innovation in Products and Services 2018")
